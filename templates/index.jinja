@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>QA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }} " />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="flex justify-center items-center min-h-screen bg-fixed opacity-95 pt-5" style="background-image: url('{{ url_for('static', filename='img/bg.jpg') }}');">
+      <div class="flex flex-col w-2/3">
+        <p class="text-5xl font-semibold mb-4 text-center text-white font-serif italic text-log">Chatbot QA Al-Quran</p>
+        <form method="post">
+          <div class="bg-green-700 p-5 pb-1 flex justify-between w-full rounded-3xl mb-3">
+            <div class="w-11/12 relative bottom-1">
+              <input type="text" class="text-white font-semibold w-full focus:outline-0 text-lg" name="question" placeholder="Tulis pertanyaanmu di sini..." required />
+            </div>
+            <div class="relative bottom-2">
+              <button type="submit" class="bg-yellow-50 p-2 rounded-3xl shadow-2xl"><i class="fas fa-arrow-right animate-bounce"></i></button>
+            </div>
+          </div>
+        </form>
+
+        {% if history %}
+          <div class="flex w-fit bg-red-600 p-2 rounded-2xl mb-2 text-white justify-center items-center font-semibold">
+            <i class="fas fa-trash mr-1"></i>
+            <a href="{{ url_for('clear') }}">Hapus Riwayat</a>
+          </div>
+          {% for item in history|reverse %}
+            <div class="flex flex-col">
+              <div class="flex justify-start mb-2 w-full">
+                <div class="bg-green-700 p-2 px-4 rounded-3xl text-white font-semibold text-lg max-w-3/4">{{ item.question }}</div>
+              </div>
+              <div class="flex justify-end w-full mb-2">
+                <div class="bg-green-300 p-2 px-4 rounded-3xl font-semibold text-lg max-w-3/4">{{ item.answer }}</div>
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

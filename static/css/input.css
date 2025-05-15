@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
-.{
-    
+@theme {
+  --color-warna1: #f6f4e8; 
+    --color-warna2: #808678; 
+    --color-warna3: #d0b092;   
+   --color-warna4:#4b5743;
+   --color-warna5:#c07968
 }
